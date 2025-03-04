@@ -116,10 +116,11 @@
   become: true
   when: newrelic_cli_path is defined
 
-- name: ensure tar is installed for script execution
-  package:
+- name: ensure tar is installed for script execution yum
+  yum:
     name: tar
     state: present
+    use_backend: yum
   become: yes
   ignore_errors: true
 
@@ -127,6 +128,7 @@
   dnf:
     name: tar
     state: present
+    use_backend: dnf
   become: yes
   ignore_errors: true
 
