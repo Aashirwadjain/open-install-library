@@ -124,13 +124,12 @@
   become: yes
   ignore_errors: true
 
-- name: ensure tar is installed for script execution dnf5
-  ansible.builtin.dnf5:
+- name: ensure tar is installed for script execution dnf
+  ansible.builtin.dnf:
     name: tar
     state: present
   become: yes
   ignore_errors: true
-
 
 - name: Install newrelic-cli
   shell: "curl -Ls https://raw.githubusercontent.com/newrelic/newrelic-cli/master/scripts/install.sh | sudo bash"
