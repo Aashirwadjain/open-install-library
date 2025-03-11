@@ -4,15 +4,11 @@
 
 - name: Change directory to /etc/yum.repos.d/
   shell: cd /etc/yum.repos.d/
-  
+
 - name: Disable mirrorlist in CentOS repo files
-  replace:
-    path: "/etc/yum.repos.d/CentOS-{{ ansible_distribution_major_version }}.repo"
-    regexp: 'mirrorlist='
-    replace: '#mirrorlist='
+  shell: sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
 
 - name: Update baseurl to vault.centos.org in CentOS repo files
-  replace:
-    path: "/etc/yum.repos.d/CentOS-{{ ansible_distribution_major_version }}.repo"
-    regexp: '^baseurl=http://mirror.centos.org'
-    replace: 'baseurl=http://vault.centos.org'
+  shell: sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+  
