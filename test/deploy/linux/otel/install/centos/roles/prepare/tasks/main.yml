@@ -2,29 +2,17 @@
 - debug:
     msg: Update CentOS
 
-- name: Change directory to yum repos
-  ansible.builtin.command: ls
-  args:
-    chdir: /etc/yum.repos.d
+- name: Change directory to /etc/yum.repos.d/
+  shell: cd /etc/yum.repos.d/
+  
+- name: Disable mirrorlist in CentOS repo files
+  replace:
+    path: "/etc/yum.repos.d/CentOS-{{ ansible_distribution_major_version }}.repo"
+    regexp: 'mirrorlist='
+    replace: '#mirrorlist='
 
-- name: Comment out mirrorlist lines
-  ansible.builtin.replace:
-    path: "/etc/yum.repos.d/CentOS-{{ item }}"
-    regexp: "^mirrorlist"
-    replace: "#mirrorlist"
-  loop:
-    - Base.repo
-    - AppStream.repo
-    - Extras.repo
-    - CentOSPlus.repo
-
-- name: Replace baseurl with vault URL
-  ansible.builtin.replace:
-    path: "/etc/yum.repos.d/CentOS-{{ item }}"
-    regexp: "^#baseurl=http:\/\/mirror.centos.org"
-    replace: "baseurl=http://vault.centos.org"
-  loop:
-    - Base.repo
-    - AppStream.repo
-    - Extras.repo
-    - CentOSPlus.repo
+- name: Update baseurl to vault.centos.org in CentOS repo files
+  replace:
+    path: "/etc/yum.repos.d/CentOS-{{ ansible_distribution_major_version }}.repo"
+    regexp: '^baseurl=http://mirror.centos.org'
+    replace: 'baseurl=http://vault.centos.org'
