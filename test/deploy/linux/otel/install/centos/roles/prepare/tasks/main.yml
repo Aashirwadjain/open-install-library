@@ -21,7 +21,6 @@
     - Debuginfo.repo
     - FastTrack.repo
     - Sources.repo
-    - Vault.repo
 
 - name: Replace baseurl with vault URL
   ansible.builtin.replace:
@@ -37,4 +36,3 @@
     - Debuginfo.repo
     - FastTrack.repo
     - Sources.repo
-    - Vault.repo
