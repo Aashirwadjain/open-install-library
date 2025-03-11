@@ -20,7 +20,6 @@
     - CR.repo
     - Debuginfo.repo
     - FastTrack.repo
-    - Media.repo
     - Sources.repo
     - Vault.repo
 
@@ -37,6 +36,5 @@
     - CR.repo
     - Debuginfo.repo
     - FastTrack.repo
-    - Media.repo
     - Sources.repo
     - Vault.repo
