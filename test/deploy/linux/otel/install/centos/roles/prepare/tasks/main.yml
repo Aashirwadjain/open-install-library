@@ -17,7 +17,6 @@
     - AppStream.repo
     - Extras.repo
     - CentOSPlus.repo
-    - FastTrack.repo
 
 - name: Replace baseurl with vault URL
   ansible.builtin.replace:
@@ -29,4 +28,3 @@
     - AppStream.repo
     - Extras.repo
     - CentOSPlus.repo
-    - FastTrack.repo
