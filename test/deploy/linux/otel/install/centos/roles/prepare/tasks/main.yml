@@ -3,7 +3,9 @@
     msg: Update CentOS
 
 - name: Change directory to yum repos
-  ansible.builtin.command: chdir=/etc/yum.repos.d
+  ansible.builtin.command: ls
+  args:
+    chdir: /etc/yum.repos.d
 
 - name: Comment out mirrorlist lines
   ansible.builtin.replace:
